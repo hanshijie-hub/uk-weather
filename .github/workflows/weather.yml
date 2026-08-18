@@ -3,11 +3,8 @@ name: 每日英国天气推送
 on:
   schedule:
     # GitHub Actions cron 使用 UTC 时间
-    # 英国夏令时(BST, UTC+1)早上8点 = UTC 7点
-    # 英国冬令时(GMT, UTC+0)早上8点 = UTC 8点
-    # 两个时间点都设，确保冬夏都是英国8点推送
-    - cron: "0 7 * * *"   # 夏令时 = 英国8:00
-    - cron: "0 8 * * *"   # 冬令时 = 英国8:00
+    # 中国时间(CST, UTC+8)早上8点 = UTC 0点
+    - cron: "0 0 * * *"
   workflow_dispatch:       # 允许手动触发测试
 
 jobs:
