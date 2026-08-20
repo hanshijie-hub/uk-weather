@@ -4,10 +4,20 @@ on:
   schedule:
     # GitHub Actions cron 使用 UTC 时间
     # 中国时间(CST, UTC+8)早上8点 = UTC 0点
-    - cron: "0 0 * * *"
+    # 提前到 UTC 23:50 (北京时间7:50)，给 GitHub 延迟留余量
+    - cron: "50 23 * * *"
   workflow_dispatch:       # 允许手动触发测试
 
 jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Keepalive
+        uses: gautamkrishnar/keepalive-workflow@v1
+
   send-weather:
     runs-on: ubuntu-latest
     steps:
